@@ -1,0 +1,34 @@
+.nav {
+  height: 100vh;
+  min-width: 75px;
+  width: 20%;
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav * {
+  text-decoration: none;
+  color: white;
+}
+
+.web-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-links {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+a:hover {
+  background-color: #37373d;
+}
