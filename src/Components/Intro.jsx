@@ -6,48 +6,57 @@ import { ScrollContext } from "../App";
 
 export default function Intro() {
   const { scrollHeight } = useContext(ScrollContext);
-  console.log(scrollHeight);
+
   const [open, setOpen] = useState(false);
   const [spring, setSpring] = useSpring(() => ({
     width: "50%",
-    config: {
-      clamp: true,
-      ...config.slow,
+    config: config.slow,
+    onRest: () => {
+      if (spring.width.getValue() === "100%") {
+        setOpen(true);
+      }
     },
+  }));
+  const [hiSpring, setHiSpring] = useSpring(() => ({
+    transform: "translateX(0vw)",
   }));
 
   useEffect(() => {
-    const intro = document.getElementById("intro");
-    function handleScroll(e) {
-      if (e.wheelDeltaY > 0) {
-        setOpen(false);
-        setSpring({ width: "50%" });
-      } else {
-        setSpring({ width: "100%" });
-        setTimeout(() => {
-          setOpen(true);
-        }, 500);
-      }
+    if (scrollHeight < 10) {
+      setOpen(false);
+      setSpring({ width: "50%" });
+      setHiSpring({
+        transform: "translateX(0vw)",
+      });
+    } else {
+      setSpring({ width: "100%" });
+      // setOpen(true);
+      setHiSpring({
+        transform: "translateX(50vw)",
+      });
     }
-    intro.addEventListener("wheel", handleScroll);
-    return () => {
-      intro.removeEventListener("wheel", handleScroll);
-    };
-  }, []);
+  }, [scrollHeight, setSpring, setHiSpring]);
 
   return (
     <StyledIntro id="intro">
       <StyledImage></StyledImage>
       <StyledAbout style={spring}>
         <TextTrail open={open}>
+          <h2>I'm</h2>
           <h1>Alexander George</h1>
-          <p>ADVENTURER x CREATIVE x DEVELOPER</p>
+          <h4>ADVENTURER x CREATIVE x DEVELOPER</h4>
           <p>
             I'm a Software Engineer experienced with crafting Full Stack Web
             Applications
           </p>
         </TextTrail>
       </StyledAbout>
+      <animated.h1 style={hiSpring}>
+        HE
+        <br /> LL
+        <br />
+        O!
+      </animated.h1>
     </StyledIntro>
   );
 }
@@ -58,6 +67,21 @@ const StyledIntro = styled.div`
   width: 100%;
   display: flex;
   background: #333;
+  > h1 {
+    position: absolute;
+    left: calc(50% - 100px);
+    height: 100%;
+    width: 200px;
+    font-size: 8em;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    font-family: Mono;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const StyledImage = styled.div`
@@ -65,7 +89,7 @@ const StyledImage = styled.div`
   height: 100%;
   width: 50%;
   right: 0;
-  background-image: url(/pic02.jpg);
+  background-image: url(/waterfall.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -73,20 +97,25 @@ const StyledImage = styled.div`
 
 const StyledAbout = styled(animated.div)`
   position: absolute;
-  height: 200%;
+  height: 100%;
   padding: 10%;
-  background: #83944c;
+  background: #333;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   h1 {
     color: white;
     font-size: 4em;
   }
+  h4 {
+    color: #ccc;
+  }
   p {
-    color: #222;
+    margin-top: 40px;
+    color: white;
     font-weight: 800;
-    font-size: 2em;
+    font-size: 1em;
+    min-width: 500px;
+    width: 500px;
   }
 `;

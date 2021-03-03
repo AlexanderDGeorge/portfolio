@@ -1,17 +1,18 @@
 import React from "react";
 import { useTrail, animated } from "react-spring";
+import styled from "styled-components";
 
 export default function TextTrail({ open, children }) {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200, delay: 1000 },
+    config: { mass: 5, tension: 2000, friction: 200 },
     opacity: open ? 1 : 0,
     x: open ? 0 : 20,
     from: { opacity: 0, x: 20, height: 0 },
   });
 
   return trail.map(({ x, height, ...rest }, index) => (
-    <animated.div
+    <AnimatedDiv
       key={index}
       style={{
         ...rest,
@@ -19,6 +20,12 @@ export default function TextTrail({ open, children }) {
       }}
     >
       {items[index]}
-    </animated.div>
+    </AnimatedDiv>
   ));
 }
+
+const AnimatedDiv = styled(animated.div)`
+  * {
+    transition: all 0.25s ease-in-out;
+  }
+`;

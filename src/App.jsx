@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Intro from "./Components/Intro";
 import Skills from "./Components/Skills";
@@ -10,34 +10,28 @@ export const ScrollContext = createContext({
 });
 
 export default function App() {
-  const scrollHeightRef = useRef();
-  const [elementRef, setElementRef] = useState(undefined);
+  const [scrollHeight, setScrollHeight] = useState(0);
 
   useEffect(() => {
-    const scrollOverlay = document.getElementById("scroll-overlay");
-    function handleScroll(e) {
-      // console.log(e);
-      scrollHeightRef.current = e.deltaY;
+    const app = document.getElementById("app");
+    function handleScroll() {
+      const posY = app.getBoundingClientRect().top;
+      const offset = window.pageYOffset - posY;
+      setScrollHeight(offset);
     }
-    scrollOverlay.addEventListener("wheel", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      scrollOverlay.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <StyledApp id="app">
-      <ScrollContext.Provider
-        value={{
-          scrollHeight: scrollHeightRef.current,
-          elementRef,
-          setElementRef,
-        }}
-      >
-        <div id="scroll-overlay">
+      <ScrollContext.Provider value={{ scrollHeight }}>
+        <Frame>
           <Intro />
-          {/* <Skills /> */}
-        </div>
+          <Skills />
+        </Frame>
       </ScrollContext.Provider>
     </StyledApp>
   );
@@ -45,19 +39,26 @@ export default function App() {
 
 const StyledApp = styled.div`
   z-index: 1;
-  height: 100%;
+  position: relative;
+  height: 1000%;
   width: 100%;
-  padding: 40px;
   display: flex;
   flex-direction: column;
   transition: all 0.25s ease-in-out;
   overflow: hidden;
+`;
+
+const Frame = styled.div`
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  height: 90vh;
+  width: 90vw;
+  overflow: hidden;
   @media screen and (max-width: 700px) {
-    padding: 0;
-  }
-  > div {
-    height: 1000%;
-    width: 100%;
-    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
   }
 `;
