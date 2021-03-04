@@ -2,21 +2,17 @@ import { useContext, useEffect } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
-// import Skills from "./Skills";
 
 export default function SkillsHeader() {
   const { scrollHeight } = useContext(ScrollContext);
-
   const [spring, setSpring] = useSpring(() => ({
     scroll: 0,
     config: config.stiff,
   }));
 
   useEffect(() => {
-    const percent = (scrollHeight - 1000) / 20;
-    console.log(percent);
     if (scrollHeight > 1000) {
-      setSpring({ scroll: percent });
+      setSpring({ scroll: (scrollHeight - 1000) / 50 });
     } else {
       setSpring({ scroll: 0 });
     }
@@ -30,12 +26,13 @@ export default function SkillsHeader() {
         ),
       }}
     >
-      <img src={"/images/Sky.png"} alt="" />
       <h1>SKILLS</h1>
+      <img src={"/images/Sky.png"} alt="" />
+      {/* <h1>SKILLS</h1> */}
       <animated.img
         style={{
           transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${0.6 * scroll + 175}px)`
+            (scroll) => `translateY(-${0.3 * scroll + 16}%)`
           ),
         }}
         src={"/images/Mountains.png"}
@@ -44,7 +41,7 @@ export default function SkillsHeader() {
       <animated.img
         style={{
           transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${0.8 * scroll + 350}px)`
+            (scroll) => `translateY(-${Math.min(140, 0.5 * scroll + 79)}% )`
           ),
         }}
         src={"/images/Foreground.png"}
@@ -57,7 +54,6 @@ export default function SkillsHeader() {
 const StyledSkills = styled(animated.div)`
   position: absolute;
   z-index: 1;
-  /* height: 50%; */
   width: 100%;
   background: #333;
   background: #473f39;
@@ -67,12 +63,17 @@ const StyledSkills = styled(animated.div)`
     width: 100%;
   }
   > h1 {
+    position: absolute;
     z-index: 0;
+    top: 4vw;
     width: 100%;
     font-family: Mono;
     font-size: 8em;
     color: white;
     text-align: center;
-    transform: translateY(-150px);
+    @media screen and (max-width: 600px) {
+      font-size: 5em;
+      top: 5vmax;
+    }
   }
 `;

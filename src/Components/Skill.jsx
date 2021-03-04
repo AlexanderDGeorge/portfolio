@@ -2,22 +2,7 @@ import { useContext, useRef, useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
-
-const percentageSeen = (ref) => {
-  const viewportHeight = window.innerHeight;
-  const scrollTop = window.scrollY;
-  const elementOffsetTop = ref.current.offsetTop;
-  const elementHeight = ref.current.offsetHeight;
-
-  console.log(viewportHeight, scrollTop, elementOffsetTop, elementHeight);
-
-  const distance = scrollTop + viewportHeight - elementOffsetTop;
-  const percentage = Math.round(
-    distance / ((viewportHeight + elementHeight) / 100)
-  );
-
-  return Math.min(100, Math.max(0, percentage));
-};
+import percentageInView from "../util/percentageInView";
 
 export default function Skill({ skill, i }) {
   const { scrollHeight } = useContext(ScrollContext);
@@ -29,8 +14,7 @@ export default function Skill({ skill, i }) {
   }));
 
   useEffect(() => {
-    // console.log(percentageSeen(ref));
-    if (percentageSeen(ref) > 10) {
+    if (percentageInView(ref.current) > 10) {
       setSpring({ x: 10 });
     }
   }, [scrollHeight, setSpring]);

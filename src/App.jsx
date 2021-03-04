@@ -42,7 +42,7 @@ export default function App() {
 const StyledApp = styled.div`
   z-index: 1;
   position: relative;
-  height: 500%;
+  height: 1000%;
   width: 100%;
   display: flex;
   flex-direction: column;

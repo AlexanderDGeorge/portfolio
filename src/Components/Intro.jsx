@@ -31,7 +31,7 @@ export default function Intro() {
       });
     } else {
       setSpring({ width: 100 });
-      if (window.outerWidth < 600) {
+      if (window.innerWidth < 600) {
         setHiSpring({ transform: "translateX(100vw)" });
       } else {
         setHiSpring({
