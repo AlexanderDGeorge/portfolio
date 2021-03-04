@@ -39,6 +39,7 @@ export default function SkillsHeader() {
         src={"/images/Mountains.png"}
         alt=""
       />
+      <h2>and TECHNOLOGIES</h2>
       <animated.img
         style={{
           transform: spring.scroll.interpolate(
@@ -73,5 +74,14 @@ const StyledSkillsHeader = styled(animated.header)`
       font-size: 5em;
       top: 5vmax;
     }
+  }
+  > h2 {
+    position: absolute;
+    top: 20vw;
+    width: 100%;
+    font-family: Mono;
+    font-size: 3em;
+    color: white;
+    text-align: center;
   }
 `;

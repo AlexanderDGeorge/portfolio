@@ -97,6 +97,6 @@ const ScrollContainer = styled(animated.div)`
   z-index: 1;
   height: 500%;
   width: 100%;
-  background: #473f39;
+  background: #eee;
   box-shadow: 0 0 20px -4px rgba(0, 0, 0, 0.5);
 `;
