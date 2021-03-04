@@ -23,7 +23,7 @@ export default function SkillsHeader() {
     <StyledSkillsHeader
       style={{
         height: spring.scroll.interpolate(
-          (scroll) => `${ref.current?.offsetTop - 2 * scroll}px`
+          (scroll) => `${ref.current?.clientHeight + 30 + 2 * scroll}px`
         ),
       }}
     >
@@ -43,7 +43,7 @@ export default function SkillsHeader() {
       <animated.img
         style={{
           transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${Math.min(140, 2 * scroll + 85)}% )`
+            (scroll) => `translateY(-${Math.min(140, 1.8 * scroll + 85)}% )`
           ),
         }}
         src={"/images/Foreground.png"}
@@ -83,5 +83,9 @@ const StyledSkillsHeader = styled(animated.header)`
     font-size: 3em;
     color: white;
     text-align: center;
+    @media screen and (max-width: 600px) {
+      font-size: 1em;
+      top: 12vmax;
+    }
   }
 `;

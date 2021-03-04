@@ -4,6 +4,7 @@ import Intro from "./Components/Intro";
 import SkillsHeader from "./Components/SkillsHeader";
 import Skills from "./Components/Skills";
 import { useSpring, animated, config } from "react-spring";
+import Projects from "./Components/Projects";
 
 export const ScrollContext = createContext({
   scrollHeight: 0,
@@ -54,6 +55,7 @@ export default function App() {
             >
               <SkillsHeader />
               <Skills />
+              <Projects />
             </ScrollContainer>
           </div>
         </Frame>

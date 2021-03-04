@@ -74,23 +74,21 @@ const StyledSkills = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
 `;
 
 const StyledSkill = styled.div`
-  height: 100px;
-  width: 100px;
+  padding: 10px;
   margin: 10px;
+  z-index: 3;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #333;
-  box-shadow: 0 0 20px -12px rgba(0, 0, 0, 0.4);
-  border-radius: 24px;
+  box-shadow: 0 0 20px -8px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
   > svg {
-    height: 50px;
+    height: 40px;
     width: auto;
   }
 `;
