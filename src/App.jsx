@@ -1,7 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Intro from "./Components/Intro";
-import Skills from "./Components/SkillsHeader";
+import SkillsHeader from "./Components/SkillsHeader";
+import Skills from "./Components/Skills";
+import { useSpring, animated, config } from "react-spring";
 
 export const ScrollContext = createContext({
   scrollHeight: 0,
@@ -11,6 +13,10 @@ export const ScrollContext = createContext({
 
 export default function App() {
   const [scrollHeight, setScrollHeight] = useState(0);
+  const [spring, setSpring] = useSpring(() => ({
+    scroll: 0,
+    config: config.stiff,
+  }));
 
   useEffect(() => {
     const app = document.getElementById("app");
@@ -25,13 +31,30 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (scrollHeight > 1400) {
+      setSpring({ scroll: (scrollHeight - 1400) / 50 });
+    } else {
+      setSpring({ scroll: 0 });
+    }
+  }, [scrollHeight, setSpring]);
+
   return (
     <StyledApp id="app">
       <ScrollContext.Provider value={{ scrollHeight }}>
         <Frame>
           <div>
             <Intro />
-            <Skills />
+            <ScrollContainer
+              style={{
+                transform: spring.scroll.interpolate(
+                  (scroll) => `translateY(-${scroll}%)`
+                ),
+              }}
+            >
+              <SkillsHeader />
+              <Skills />
+            </ScrollContainer>
           </div>
         </Frame>
       </ScrollContext.Provider>
@@ -42,7 +65,7 @@ export default function App() {
 const StyledApp = styled.div`
   z-index: 1;
   position: relative;
-  height: 1000%;
+  height: 500%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -67,4 +90,13 @@ const Frame = styled.div`
     width: 100%;
     overflow: hidden;
   }
+`;
+
+const ScrollContainer = styled(animated.div)`
+  position: absolute;
+  z-index: 1;
+  height: 500%;
+  width: 100%;
+  background: #473f39;
+  box-shadow: 0 0 20px -4px rgba(0, 0, 0, 0.5);
 `;

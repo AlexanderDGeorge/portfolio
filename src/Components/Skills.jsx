@@ -65,16 +65,16 @@ export default function Skills() {
 
   return (
     <StyledSkills id="skills">
-      {/* {skills.map((skill, i) => (
+      {skills.map((skill, i) => (
         <Skill key={i} skill={skill} i={i} />
-      ))} */}
+      ))}
     </StyledSkills>
   );
 }
 
 const StyledSkills = styled.div`
-  position: absolute;
-  z-index: -1;
+  /* position: absolute; */
+  background: transparent;
   height: 100%;
   width: 100%;
 `;

@@ -1,39 +1,40 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
 
 export default function SkillsHeader() {
   const { scrollHeight } = useContext(ScrollContext);
+  const ref = useRef();
   const [spring, setSpring] = useSpring(() => ({
     scroll: 0,
     config: config.stiff,
   }));
 
   useEffect(() => {
-    if (scrollHeight > 1000) {
-      setSpring({ scroll: (scrollHeight - 1000) / 50 });
+    if (scrollHeight > 1400) {
+      setSpring({ scroll: (scrollHeight - 1400) / 50 });
     } else {
       setSpring({ scroll: 0 });
     }
   }, [scrollHeight, setSpring]);
 
   return (
-    <StyledSkills
+    <StyledSkillsHeader
       style={{
-        transform: spring.scroll.interpolate(
-          (scroll) => `translateY(-${scroll}%)`
+        height: spring.scroll.interpolate(
+          (scroll) => `${ref.current?.offsetTop - 2 * scroll}px`
         ),
       }}
     >
       <h1>SKILLS</h1>
       <img src={"/images/Sky.png"} alt="" />
-      {/* <h1>SKILLS</h1> */}
       <animated.img
         style={{
           transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${0.3 * scroll + 16}%)`
+            (scroll) => `translateY(-${1.6 * scroll + 16}%)`
           ),
+          top: "16%",
         }}
         src={"/images/Mountains.png"}
         alt=""
@@ -41,22 +42,19 @@ export default function SkillsHeader() {
       <animated.img
         style={{
           transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${Math.min(140, 0.5 * scroll + 79)}% )`
+            (scroll) => `translateY(-${Math.min(140, 2 * scroll + 85)}% )`
           ),
         }}
         src={"/images/Foreground.png"}
         alt=""
+        ref={ref}
       />
-    </StyledSkills>
+    </StyledSkillsHeader>
   );
 }
 
-const StyledSkills = styled(animated.div)`
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  background: #333;
-  background: #473f39;
+const StyledSkillsHeader = styled(animated.header)`
+  width: auto;
   > img {
     z-index: 1;
     height: auto;
