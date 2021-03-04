@@ -9,11 +9,13 @@ export default function Intro() {
 
   const [open, setOpen] = useState(false);
   const [spring, setSpring] = useSpring(() => ({
-    width: "50%",
+    width: 50,
     config: config.slow,
-    onRest: () => {
-      if (spring.width.getValue() === "100%") {
+    onFrame: () => {
+      if (spring.width.getValue() >= 90) {
         setOpen(true);
+      } else {
+        setOpen(false);
       }
     },
   }));
@@ -23,39 +25,42 @@ export default function Intro() {
 
   useEffect(() => {
     if (scrollHeight < 10) {
-      setOpen(false);
-      setSpring({ width: "50%" });
+      setSpring({ width: 50 });
       setHiSpring({
         transform: "translateX(0vw)",
       });
     } else {
-      setSpring({ width: "100%" });
-      // setOpen(true);
-      setHiSpring({
-        transform: "translateX(50vw)",
-      });
+      setSpring({ width: 100 });
+      if (window.outerWidth < 600) {
+        setHiSpring({ transform: "translateX(100vw)" });
+      } else {
+        setHiSpring({
+          transform: "translateX(50vw)",
+        });
+      }
     }
   }, [scrollHeight, setSpring, setHiSpring]);
 
   return (
     <StyledIntro id="intro">
       <StyledImage></StyledImage>
-      <StyledAbout style={spring}>
+      <StyledAbout
+        style={{ width: spring.width.interpolate((width) => `${width}%`) }}
+      >
         <TextTrail open={open}>
           <h2>I'm</h2>
           <h1>Alexander George</h1>
           <h4>ADVENTURER x CREATIVE x DEVELOPER</h4>
           <p>
-            I'm a Software Engineer experienced with crafting Full Stack Web
-            Applications
+            I'm a <strong>Software Engineer</strong> experienced with crafting
+            Full Stack Web Applications. I have been learning about and working
+            with code for over five years.
           </p>
         </TextTrail>
       </StyledAbout>
       <animated.h1 style={hiSpring}>
-        HE
-        <br /> LL
-        <br />
-        O!
+        HEL
+        <br /> LO!
       </animated.h1>
     </StyledIntro>
   );
@@ -69,6 +74,7 @@ const StyledIntro = styled.div`
   background: #333;
   > h1 {
     position: absolute;
+    z-index: 1;
     left: calc(50% - 100px);
     height: 100%;
     width: 200px;
@@ -98,7 +104,7 @@ const StyledImage = styled.div`
 const StyledAbout = styled(animated.div)`
   position: absolute;
   height: 100%;
-  padding: 10%;
+  padding: 5% 25% 5% 10%;
   background: #333;
   display: flex;
   flex-direction: column;
@@ -113,9 +119,8 @@ const StyledAbout = styled(animated.div)`
   p {
     margin-top: 40px;
     color: white;
-    font-weight: 800;
+    font-weight: 200;
     font-size: 1em;
-    min-width: 500px;
-    width: 500px;
+    max-width: 600px;
   }
 `;

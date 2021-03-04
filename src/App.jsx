@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Intro from "./Components/Intro";
-import Skills from "./Components/Skills";
+import Skills from "./Components/SkillsHeader";
 
 export const ScrollContext = createContext({
   scrollHeight: 0,
@@ -29,8 +29,10 @@ export default function App() {
     <StyledApp id="app">
       <ScrollContext.Provider value={{ scrollHeight }}>
         <Frame>
-          <Intro />
-          <Skills />
+          <div>
+            <Intro />
+            <Skills />
+          </div>
         </Frame>
       </ScrollContext.Provider>
     </StyledApp>
@@ -40,7 +42,7 @@ export default function App() {
 const StyledApp = styled.div`
   z-index: 1;
   position: relative;
-  height: 1000%;
+  height: 500%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -50,15 +52,19 @@ const StyledApp = styled.div`
 
 const Frame = styled.div`
   position: fixed;
-  top: 5vh;
-  left: 5vw;
-  height: 90vh;
-  width: 90vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 40px;
   overflow: hidden;
   @media screen and (max-width: 700px) {
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
+    padding: 0px;
+  }
+  > div {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 `;

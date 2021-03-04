@@ -5,7 +5,7 @@ import styled from "styled-components";
 export default function TextTrail({ open, children }) {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200 },
+    config: { mass: 8, tension: 2000, friction: 200 },
     opacity: open ? 1 : 0,
     x: open ? 0 : 20,
     from: { opacity: 0, x: 20, height: 0 },
@@ -26,6 +26,6 @@ export default function TextTrail({ open, children }) {
 
 const AnimatedDiv = styled(animated.div)`
   * {
-    transition: all 0.25s ease-in-out;
+    transition: all 0.55s ease-in-out;
   }
 `;
