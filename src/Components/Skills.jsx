@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useSprings, animated } from "react-spring";
 import {
   SiApollographql,
   SiFirebase,
@@ -23,8 +22,7 @@ import {
   SiWebrtc,
   SiCss3,
 } from "react-icons/si";
-import { useContext, useEffect } from "react";
-import { ScrollContext } from "../App";
+import Skill from "./Skill";
 
 const skills = [
   { Apollo: <SiApollographql /> },
@@ -62,37 +60,14 @@ const skills = [
   { WebRTC: <SiWebrtc /> },
 ];
 
-const setSpring = (index, scrollHeight) => {
-  const multiplier = index % 2 === 0 ? 1 : -1;
-  return {
-    top: index * 50,
-    left: index % 2 === 0 ? "0%" : "100%",
-    x: (multiplier * scrollHeight * (1 / index)) / 2,
-  };
-};
-
 export default function Skills() {
-  const { scrollHeight } = useContext(ScrollContext);
-  const [springs, setSprings] = useSprings(skills.length, (index) =>
-    setSpring(index, scrollHeight)
-  );
-
-  useEffect(() => {
-    // console.log(scrollHeight);
-    setSprings((index) => setSpring(index, scrollHeight - 1600));
-  }, [scrollHeight, setSprings]);
+  //   console.log(document.getElementById("skills")?.offsetTop);
 
   return (
-    <StyledSkills>
-      {springs.map((props) => (
-        <animated.div
-          style={{
-            top: props.top,
-            left: props.left,
-            transform: props.x.interpolate((x) => `translate3d(${x}px, 0, 0)`),
-          }}
-        ></animated.div>
-      ))}
+    <StyledSkills id="skills">
+      {/* {skills.map((skill, i) => (
+        <Skill key={i} skill={skill} i={i} />
+      ))} */}
     </StyledSkills>
   );
 }
@@ -102,10 +77,4 @@ const StyledSkills = styled.div`
   z-index: -1;
   height: 100%;
   width: 100%;
-  > div {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    background: white;
-  }
 `;

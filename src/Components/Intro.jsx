@@ -95,7 +95,7 @@ const StyledImage = styled.div`
   height: 100%;
   width: 50%;
   right: 0;
-  background-image: url(/waterfall.jpg);
+  background-image: url(/images/waterfall.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

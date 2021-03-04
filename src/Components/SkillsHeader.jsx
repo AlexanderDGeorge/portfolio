@@ -1,43 +1,26 @@
 import { useContext, useEffect } from "react";
-import { useSpring, animated, config, interpolate } from "react-spring";
+import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
-import Skills from "./Skills";
+// import Skills from "./Skills";
 
 export default function SkillsHeader() {
   const { scrollHeight } = useContext(ScrollContext);
 
   const [spring, setSpring] = useSpring(() => ({
     scroll: 0,
-    x: 0,
-    y: 0,
-    opacity: 0,
     config: config.stiff,
   }));
 
   useEffect(() => {
     const percent = (scrollHeight - 1000) / 20;
+    console.log(percent);
     if (scrollHeight > 1000) {
-      setSpring({ scroll: percent, opacity: percent / 50 });
+      setSpring({ scroll: percent });
     } else {
-      setSpring({ scroll: 0, opacity: 0 });
+      setSpring({ scroll: 0 });
     }
   }, [scrollHeight, setSpring]);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const offCenterX = window.outerWidth / 2 - e.clientX;
-      const offCenterY = window.outerHeight / 2 - e.clientY;
-      setSpring({
-        x: offCenterX / 5,
-        y: offCenterY / 10,
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [setSpring]);
 
   return (
     <StyledSkills
@@ -47,19 +30,26 @@ export default function SkillsHeader() {
         ),
       }}
     >
-      <img src={"/ellinoir.jpg"} alt="" />
-      <animated.h1
+      <img src={"/images/Sky.png"} alt="" />
+      <h1>SKILLS</h1>
+      <animated.img
         style={{
-          transform: interpolate(
-            [spring.x, spring.y],
-            (x, y) => `translate3d(${x}px, ${y}px, 0)`
+          transform: spring.scroll.interpolate(
+            (scroll) => `translateY(-${0.6 * scroll + 175}px)`
           ),
-          opacity: spring.opacity,
         }}
-      >
-        SKILLS
-      </animated.h1>
-      <Skills />
+        src={"/images/Mountains.png"}
+        alt=""
+      />
+      <animated.img
+        style={{
+          transform: spring.scroll.interpolate(
+            (scroll) => `translateY(-${0.8 * scroll + 350}px)`
+          ),
+        }}
+        src={"/images/Foreground.png"}
+        alt=""
+      />
     </StyledSkills>
   );
 }
@@ -67,21 +57,22 @@ export default function SkillsHeader() {
 const StyledSkills = styled(animated.div)`
   position: absolute;
   z-index: 1;
-  height: 300%;
+  /* height: 50%; */
   width: 100%;
-  /* background: #473f39; */
   background: #333;
+  background: #473f39;
   > img {
+    z-index: 1;
     height: auto;
     width: 100%;
   }
   > h1 {
-    position: absolute;
-    top: 5%;
+    z-index: 0;
     width: 100%;
     font-family: Mono;
     font-size: 8em;
     color: white;
     text-align: center;
+    transform: translateY(-150px);
   }
 `;
