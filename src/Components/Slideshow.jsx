@@ -31,8 +31,12 @@ export default function Slideshow({ images, style }) {
 }
 
 const StyledSlideshow = styled(animated.div)`
+  position: relative;
+  height: auto;
   width: 60%;
+  cursor: pointer;
   > img {
+    border: 1px solid #333;
     position: absolute;
     width: 100%;
     height: auto;

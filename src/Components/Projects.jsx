@@ -20,6 +20,7 @@ export default function Projects() {
   return (
     <StyledProjects>
       <animated.h1 style={spring}>PROJECTS</animated.h1>
+      <animated.p style={spring}>Click the images to cycle through</animated.p>
       <Pairboard />
       <Petsagram />
     </StyledProjects>
@@ -29,16 +30,18 @@ export default function Projects() {
 const StyledProjects = styled.div`
   height: 100%;
   width: 100%;
-  margin-top: 5%;
-  background: #eee;
+  margin-top: 10%;
+  /* background: #eee; */
   > h1 {
     width: 100%;
-    margin: 5% 0;
     font-family: Mono;
     font-size: 8em;
     color: #333;
     @media screen and (max-width: 600px) {
       font-size: 5em;
     }
+  }
+  > p {
+    margin-left: 20%;
   }
 `;

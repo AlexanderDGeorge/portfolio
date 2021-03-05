@@ -3,6 +3,7 @@ import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
 import Slideshow from "./Slideshow";
+import { FaLink, FaGithub } from "react-icons/fa";
 
 export default function Petsagram() {
   const { scrollHeight } = useContext(ScrollContext);
@@ -30,6 +31,14 @@ export default function Petsagram() {
         }}
       >
         <h2>Petsagram</h2>
+        <span>
+          <a href="https://pet-feeds.web.app/">
+            <FaLink />
+          </a>
+          <a href="https://github.com/AlexanderDGeorge/petsagram">
+            <FaGithub />
+          </a>
+        </span>
         <p>
           This is the Petsagram description block. Sample text to fill up the
           space for now
@@ -37,7 +46,6 @@ export default function Petsagram() {
       </DescriptionBlock>
       <Slideshow
         style={{
-          width: "60%",
           opacity: spring.opacity,
           transform: spring.x.interpolate((x) => `translateX(${x}%)`),
         }}
@@ -63,11 +71,18 @@ const DescriptionBlock = styled(animated.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 5px;
   > h2 {
     font-family: Mono;
     /* font-size: em; */
   }
   > p {
     text-align: left;
+  }
+  svg {
+    height: 25px;
+    width: auto;
+    margin: 5px;
+    fill: #333;
   }
 `;

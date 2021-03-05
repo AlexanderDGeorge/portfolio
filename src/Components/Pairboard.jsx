@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
+import { FaLink, FaGithub } from "react-icons/fa";
+import Slideshow from "./Slideshow";
 
 export default function Pairboard() {
   const { scrollHeight } = useContext(ScrollContext);
@@ -22,13 +24,17 @@ export default function Pairboard() {
 
   return (
     <StyledPairboard>
-      <animated.img
-        src="/images/pairboard.png"
-        alt="pairboard preview"
+      <Slideshow
         style={{
           opacity: spring.opacity,
           transform: spring.x.interpolate((x) => `translateX(-${x}%)`),
         }}
+        images={[
+          "pairboard.png",
+          "pairboard2.png",
+          "pairboard3.png",
+          "pairboard4.png",
+        ]}
       />
       <DescriptionBlock
         style={{
@@ -37,9 +43,27 @@ export default function Pairboard() {
         }}
       >
         <h2>Pairboard.dev</h2>
+        <span>
+          <a href="https://pairboard.dev">
+            <FaLink />
+          </a>
+          <a href="https://github.com/AlexanderDGeorge/pairboard.dev">
+            <FaGithub />
+          </a>
+        </span>
         <p>
-          This is the pairboard.dev description block. Sample text to fill up
-          the space for now
+          Pairboard.dev was designed to be a developer platform to connect and
+          share coding problems. Users are able to create and share posts with a
+          description concerning their problem. Fellow developers/users have the
+          ability to respond through comments or messaging. However, the main
+          feature of pairboard.dev is the integrated webRTC video chat
+          functionality allowing users to discuss, solve, or
+          <i>pairboard</i> problems in a real-time environment.
+        </p>
+        <br />
+        <p>
+          This project was used to learn TypeScript and take advantage of some
+          of the more advanced features provided by Firebase.
         </p>
       </DescriptionBlock>
     </StyledPairboard>
@@ -62,11 +86,21 @@ const DescriptionBlock = styled(animated.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-left: 5px;
+  width: 40%;
   > h2 {
     font-family: Mono;
     /* font-size: em; */
   }
   > p {
     text-align: right;
+    font-weight: 200;
+    font-size: 1em;
+  }
+  svg {
+    height: 25px;
+    width: auto;
+    margin: 5px;
+    fill: #333;
   }
 `;
