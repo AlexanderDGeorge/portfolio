@@ -28,18 +28,12 @@ export default function Projects() {
 }
 
 const StyledProjects = styled.div`
-  height: 100%;
   width: 100%;
   margin-top: 10%;
-  /* background: #eee; */
   > h1 {
     width: 100%;
     font-family: Mono;
-    font-size: 8em;
     color: #333;
-    @media screen and (max-width: 600px) {
-      font-size: 5em;
-    }
   }
   > p {
     margin-left: 20%;

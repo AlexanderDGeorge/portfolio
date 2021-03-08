@@ -23,6 +23,19 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
   }
+  h1 {
+    font-size: 7em;
+    font-family: Mono;
+    @media screen and (max-width: 900px) {
+      font-size: 6em;
+    }
+    @media screen and (max-width: 700px) {
+      font-size: 5em;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 3em;
+    }
+  }
 `;
 
 ReactDOM.render(

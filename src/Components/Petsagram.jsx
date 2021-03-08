@@ -1,12 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
 import Slideshow from "./Slideshow";
 import { FaLink, FaGithub } from "react-icons/fa";
+import percentageInView from "../util/percentageInView";
 
 export default function Petsagram() {
   const { scrollHeight } = useContext(ScrollContext);
+  const ref = useRef();
+
+  useEffect(() => {
+    percentageInView(ref.current);
+  }, [scrollHeight]);
 
   const [spring, setSpring] = useSpring(() => ({
     opacity: 0,
@@ -23,7 +29,7 @@ export default function Petsagram() {
   }, [scrollHeight, setSpring]);
 
   return (
-    <StyledPetsagram>
+    <StyledPetsagram ref={ref}>
       <DescriptionBlock
         style={{
           opacity: spring.opacity,
@@ -60,29 +66,30 @@ const StyledPetsagram = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
-  > img {
-    width: 60%;
-    height: auto;
-    align-self: flex-end;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
   }
 `;
 
 const DescriptionBlock = styled(animated.div)`
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-right: 5px;
+  margin: 5px;
   > h2 {
     font-family: Mono;
-    /* font-size: em; */
+    font-size: 2em;
   }
   > p {
-    text-align: left;
+    text-align: right;
+    font-weight: 200;
+    font-size: 1em;
   }
   svg {
-    height: 25px;
+    height: 30px;
     width: auto;
-    margin: 5px;
+    margin: 10px;
     fill: #333;
   }
 `;

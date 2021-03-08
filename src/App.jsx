@@ -5,6 +5,8 @@ import SkillsHeader from "./Components/SkillsHeader";
 import Skills from "./Components/Skills";
 import { useSpring, animated, config } from "react-spring";
 import Projects from "./Components/Projects";
+import Resume from "./Components/Resume";
+import ScrollIndicator from "./Components/ScrollIndicator";
 
 export const ScrollContext = createContext({
   scrollHeight: 0,
@@ -56,8 +58,10 @@ export default function App() {
               <SkillsHeader />
               <Skills />
               <Projects />
+              <Resume />
             </ScrollContainer>
           </div>
+          {/* <ScrollIndicator /> */}
         </Frame>
       </ScrollContext.Provider>
     </StyledApp>
@@ -97,7 +101,7 @@ const Frame = styled.div`
 const ScrollContainer = styled(animated.div)`
   position: absolute;
   z-index: 1;
-  height: 500%;
+  /* height: 500%; */
   width: 100%;
   background: #eee;
   box-shadow: 0 0 20px -4px rgba(0, 0, 0, 0.5);

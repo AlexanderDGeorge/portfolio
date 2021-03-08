@@ -67,11 +67,9 @@ const StyledSkillsHeader = styled(animated.header)`
     top: 4vw;
     width: 100%;
     font-family: Mono;
-    font-size: 8em;
     color: white;
     text-align: center;
     @media screen and (max-width: 600px) {
-      font-size: 5em;
       top: 5vmax;
     }
   }

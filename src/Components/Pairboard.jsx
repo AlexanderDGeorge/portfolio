@@ -60,11 +60,6 @@ export default function Pairboard() {
           functionality allowing users to discuss, solve, or
           <i>pairboard</i> problems in a real-time environment.
         </p>
-        <br />
-        <p>
-          This project was used to learn TypeScript and take advantage of some
-          of the more advanced features provided by Firebase.
-        </p>
       </DescriptionBlock>
     </StyledPairboard>
   );
@@ -75,22 +70,20 @@ const StyledPairboard = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
-  > img {
-    width: 60%;
-    height: auto;
-    align-self: flex-start;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column-reverse;
   }
 `;
 
 const DescriptionBlock = styled(animated.div)`
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 5px;
-  width: 40%;
+  margin: 5px;
   > h2 {
     font-family: Mono;
-    /* font-size: em; */
+    font-size: 2em;
   }
   > p {
     text-align: right;
@@ -98,9 +91,9 @@ const DescriptionBlock = styled(animated.div)`
     font-size: 1em;
   }
   svg {
-    height: 25px;
+    height: 30px;
     width: auto;
-    margin: 5px;
+    margin: 10px;
     fill: #333;
   }
 `;

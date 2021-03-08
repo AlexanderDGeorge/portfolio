@@ -16,16 +16,18 @@ export default function Slideshow({ images, style }) {
 
   return (
     <StyledSlideshow onClick={onClick} style={style}>
-      {transitions.map(({ item, props, key }) => {
-        return (
-          <animated.img
-            src={`/images/${images[item]}`}
-            alt=""
-            style={props}
-            key={key}
-          />
-        );
-      })}
+      <div>
+        {transitions.map(({ item, props, key }) => {
+          return (
+            <animated.img
+              src={`/images/${images[item]}`}
+              alt=""
+              style={props}
+              key={key}
+            />
+          );
+        })}
+      </div>
     </StyledSlideshow>
   );
 }
@@ -33,10 +35,17 @@ export default function Slideshow({ images, style }) {
 const StyledSlideshow = styled(animated.div)`
   position: relative;
   height: auto;
-  width: 60%;
+  min-width: 60%;
   cursor: pointer;
-  > img {
-    border: 1px solid #333;
+  @media screen and (max-width: 1000px) {
+    min-width: 80%;
+  }
+  > div {
+    width: 100%;
+    padding-bottom: calc(9 / 16 * 100%);
+  }
+  img {
+    box-shadow: 0 0 20px -8px rgba(0, 0, 0, 0.4);
     position: absolute;
     width: 100%;
     height: auto;
