@@ -6,7 +6,7 @@ const percentageInView = (element) => {
   const elementOffsetTop = element.offsetTop;
   const elementHeight = element.offsetHeight;
 
-  // console.log(viewportHeight, scrollTop, elementOffsetTop, elementHeight);
+  console.log(viewportHeight, scrollTop, elementOffsetTop, elementHeight);
 
   const distance = scrollTop + viewportHeight - elementOffsetTop;
   const percentage = Math.round(
