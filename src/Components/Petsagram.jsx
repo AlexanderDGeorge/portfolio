@@ -5,6 +5,7 @@ import { ScrollContext } from "../App";
 import Slideshow from "./Slideshow";
 import { FaLink, FaGithub } from "react-icons/fa";
 import percentageInView from "../util/percentageInView";
+import { projectDescription, projectSection } from "../util/commonStyles";
 
 export default function Petsagram() {
   const { scrollHeight } = useContext(ScrollContext);
@@ -46,8 +47,10 @@ export default function Petsagram() {
           </a>
         </span>
         <p>
-          This is the Petsagram description block. Sample text to fill up the
-          space for now
+          Petsagram is a simple social media application modeled after Instagram
+          but made for pets. Petsagram features a real time feed that paginates
+          posts for faster loading, real time messaging, as well as basic
+          Instagram features (liking posts, comments, search).
         </p>
       </DescriptionBlock>
       <Slideshow
@@ -62,34 +65,9 @@ export default function Petsagram() {
 }
 
 const StyledPetsagram = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5%;
-  @media screen and (max-width: 1000px) {
-    flex-direction: column;
-  }
+  ${projectSection}
 `;
 
 const DescriptionBlock = styled(animated.div)`
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 5px;
-  > h2 {
-    font-family: Mono;
-    font-size: 2em;
-  }
-  > p {
-    text-align: right;
-    font-weight: 200;
-    font-size: 1em;
-  }
-  svg {
-    height: 30px;
-    width: auto;
-    margin: 10px;
-    fill: #333;
-  }
+  ${projectDescription}
 `;

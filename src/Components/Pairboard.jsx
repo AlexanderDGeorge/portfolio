@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ScrollContext } from "../App";
 import { FaLink, FaGithub } from "react-icons/fa";
 import Slideshow from "./Slideshow";
+import { projectDescription, projectSection } from "../util/commonStyles";
 
 export default function Pairboard() {
   const { scrollHeight } = useContext(ScrollContext);
@@ -66,34 +67,16 @@ export default function Pairboard() {
 }
 
 const StyledPairboard = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5%;
+  ${projectSection}
   @media screen and (max-width: 1000px) {
     flex-direction: column-reverse;
   }
 `;
 
 const DescriptionBlock = styled(animated.div)`
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
+  ${projectDescription}
   align-items: flex-end;
-  margin: 5px;
-  > h2 {
-    font-family: Mono;
-    font-size: 2em;
-  }
   > p {
     text-align: right;
-    font-weight: 200;
-    font-size: 1em;
-  }
-  svg {
-    height: 30px;
-    width: auto;
-    margin: 10px;
-    fill: #333;
   }
 `;

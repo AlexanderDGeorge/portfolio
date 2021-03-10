@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { ScrollContext } from "../App";
 import Pairboard from "./Pairboard";
 import Petsagram from "./Petsagram";
+import VanillaTetris from "./VanillaTetris";
 
 export default function Projects() {
   const { scrollHeight } = useContext(ScrollContext);
@@ -23,6 +24,7 @@ export default function Projects() {
       <animated.p style={spring}>Click the images to cycle through</animated.p>
       <Pairboard />
       <Petsagram />
+      <VanillaTetris />
     </StyledProjects>
   );
 }

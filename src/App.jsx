@@ -6,13 +6,15 @@ import Skills from "./Components/Skills";
 import { useSpring, animated, config } from "react-spring";
 import Projects from "./Components/Projects";
 import Resume from "./Components/Resume";
-import ScrollIndicator from "./Components/ScrollIndicator";
+import useModal from "./Modal/useModal";
 
 export const ScrollContext = createContext({
   scrollHeight: 0,
   elementRef: undefined,
   setElementRef: undefined,
 });
+
+export const ModalContext = createContext(undefined);
 
 export default function App() {
   const [scrollHeight, setScrollHeight] = useState(0);
@@ -44,26 +46,27 @@ export default function App() {
 
   return (
     <StyledApp id="app">
-      <ScrollContext.Provider value={{ scrollHeight }}>
-        <Frame>
-          <div>
-            <Intro />
-            <ScrollContainer
-              style={{
-                transform: spring.scroll.interpolate(
-                  (scroll) => `translateY(-${scroll}%)`
-                ),
-              }}
-            >
-              <SkillsHeader />
-              <Skills />
-              <Projects />
-              <Resume />
-            </ScrollContainer>
-          </div>
-          {/* <ScrollIndicator /> */}
-        </Frame>
-      </ScrollContext.Provider>
+      <ModalContext.Provider value={useModal()}>
+        <ScrollContext.Provider value={{ scrollHeight }}>
+          <Frame>
+            <div>
+              <Intro />
+              <ScrollContainer
+                style={{
+                  transform: spring.scroll.interpolate(
+                    (scroll) => `translateY(-${scroll}%)`
+                  ),
+                }}
+              >
+                <SkillsHeader />
+                <Skills />
+                <Projects />
+                <Resume />
+              </ScrollContainer>
+            </div>
+          </Frame>
+        </ScrollContext.Provider>
+      </ModalContext.Provider>
     </StyledApp>
   );
 }
