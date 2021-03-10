@@ -9,7 +9,7 @@ const percentageInView = (element) => {
   } else {
     percentage = (100 * (viewportHeight - top - 40)) / height;
   }
-  console.log(percentage);
+  return percentage;
 };
 
 export default percentageInView;

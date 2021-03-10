@@ -1,30 +1,18 @@
-import { useContext, useEffect } from "react";
-import { useSpring, animated, config } from "react-spring";
+import { animated } from "react-spring";
+import { useRef } from "react";
 import styled from "styled-components";
-import { ScrollContext } from "../App";
 import { FaLink, FaGithub } from "react-icons/fa";
 import Slideshow from "./Slideshow";
 import { projectDescription, projectSection } from "../util/commonStyles";
+import useProjectAnimation from "../util/useProjectAnimation";
 
 export default function Pairboard() {
-  const { scrollHeight } = useContext(ScrollContext);
+  const ref = useRef();
 
-  const [spring, setSpring] = useSpring(() => ({
-    opacity: 0,
-    x: 100,
-    config: config.slow,
-  }));
-
-  useEffect(() => {
-    if (scrollHeight > 3000) {
-      setSpring({ opacity: 1, x: 0 });
-    } else {
-      setSpring({ opacity: 0, x: 100 });
-    }
-  }, [scrollHeight, setSpring]);
+  const { spring } = useProjectAnimation(ref.current);
 
   return (
-    <StyledPairboard>
+    <StyledPairboard ref={ref}>
       <Slideshow
         style={{
           opacity: spring.opacity,

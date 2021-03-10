@@ -1,13 +1,31 @@
+import { useRef } from "react";
 import { FaGithub, FaLink } from "react-icons/fa";
+import { animated } from "react-spring";
 import styled from "styled-components";
 import { projectDescription, projectSection } from "../util/commonStyles";
+import useProjectAnimation from "../util/useProjectAnimation";
 import Slideshow from "./Slideshow";
 
 export default function VanillaTetris() {
+  const ref = useRef();
+
+  const { spring } = useProjectAnimation(ref.current);
+
   return (
-    <StyledVanillaTetris>
-      <Slideshow images={["tetris.png", "tetris2.png", "tetris3.png"]} />
-      <DescriptionBlock>
+    <StyledVanillaTetris ref={ref}>
+      <Slideshow
+        style={{
+          opacity: spring.opacity,
+          transform: spring.x.interpolate((x) => `translateX(-${x}%)`),
+        }}
+        images={["tetris.png", "tetris2.png", "tetris3.png"]}
+      />
+      <DescriptionBlock
+        style={{
+          opacity: spring.opacity,
+          transform: spring.x.interpolate((x) => `translateX(${x}%)`),
+        }}
+      >
         <h2>Vanilla Tetris</h2>
         <span>
           <a href="https://vanilla-tetris.netlify.app/">
@@ -40,7 +58,7 @@ const StyledVanillaTetris = styled.div`
   }
 `;
 
-const DescriptionBlock = styled.div`
+const DescriptionBlock = styled(animated.div)`
   ${projectDescription}
   align-items: flex-end;
   > p {
