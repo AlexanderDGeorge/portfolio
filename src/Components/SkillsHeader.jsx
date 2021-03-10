@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import { ScrollContext } from "../App";
+import percentageInView from "../util/percentageInView";
 
 export default function SkillsHeader() {
   const { scrollHeight } = useContext(ScrollContext);
@@ -12,43 +13,34 @@ export default function SkillsHeader() {
   }));
 
   useEffect(() => {
-    if (scrollHeight > 1400) {
-      setSpring({ scroll: (scrollHeight - 1400) / 50 });
-    } else {
-      setSpring({ scroll: 0 });
-    }
+    setSpring({ scroll: percentageInView(ref.current) });
   }, [scrollHeight, setSpring]);
 
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
   return (
-    <StyledSkillsHeader
-      style={{
-        height: spring.scroll.interpolate(
-          (scroll) => `${ref.current?.clientHeight + 30 + 2 * scroll}px`
-        ),
-      }}
-    >
+    <StyledSkillsHeader ref={ref} style={{ height: (width * 9) / 16 - 60 }}>
       <h1>SKILLS</h1>
       <img src={"/images/Sky.png"} alt="" />
       <animated.img
-        style={{
-          transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${1.6 * scroll + 16}%)`
-          ),
-          top: "16%",
-        }}
         src={"/images/Mountains.png"}
         alt=""
+        style={{
+          transform: spring.scroll.interpolate(
+            (scroll) => `translateY(-${17 + (width * scroll) / (6 * height)}%)`
+          ),
+        }}
       />
       <h2>and TECHNOLOGIES</h2>
       <animated.img
-        style={{
-          transform: spring.scroll.interpolate(
-            (scroll) => `translateY(-${Math.min(140, 1.8 * scroll + 85)}% )`
-          ),
-        }}
         src={"/images/Foreground.png"}
         alt=""
-        ref={ref}
+        style={{
+          transform: spring.scroll.interpolate(
+            (scroll) => `translateY(-${80 + (width * scroll) / (4 * height)}%)`
+          ),
+        }}
       />
     </StyledSkillsHeader>
   );
