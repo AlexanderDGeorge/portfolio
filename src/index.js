@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import firebase from "firebase/app";
+import "firebase/analytics";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -19,24 +21,35 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: Railway;
   }
-  #root {
-    height: 100vh;
-    width: 100vw;
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+  }
+  #modal-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
   }
   h1 {
-    font-size: 7em;
+    font-size: 10vw;
+    display: inline;
     font-family: Mono;
-    @media screen and (max-width: 900px) {
-      font-size: 6em;
-    }
-    @media screen and (max-width: 700px) {
-      font-size: 5em;
-    }
-    @media screen and (max-width: 500px) {
-      font-size: 3em;
-    }
   }
 `;
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAIiUEjxoVhybpP1fxFg9E6MtDFFnBJSYY",
+  authDomain: "portfolio-faccf.firebaseapp.com",
+  projectId: "portfolio-faccf",
+  storageBucket: "portfolio-faccf.appspot.com",
+  messagingSenderId: "982822449555",
+  appId: "1:982822449555:web:a426c84c0e8095d9323866",
+  measurementId: "G-SQD47JBXPD",
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 ReactDOM.render(
   <>

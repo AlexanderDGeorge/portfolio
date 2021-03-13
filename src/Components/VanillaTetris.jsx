@@ -61,7 +61,8 @@ const StyledVanillaTetris = styled.div`
 const DescriptionBlock = styled(animated.div)`
   ${projectDescription}
   align-items: flex-end;
-  > p {
+  > p,
+  h2 {
     text-align: right;
   }
 `;
