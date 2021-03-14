@@ -1,13 +1,31 @@
 import styled from "styled-components";
 import { FaLinkedin } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import reactDom from "react-dom";
-import { Document, Page } from "react-pdf";
 import pdf from "./resume.pdf";
+import { Document, Page, pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function Resume() {
   const modalRoot = document.getElementById("modal-root");
   const [open, setOpen] = useState(false);
+  const pdfRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const closePdf = (e) => {
+      console.log(e.target);
+      if (e.target !== pdfRef.current) {
+        setOpen(false);
+      }
+    };
+
+    modalRoot.addEventListener("click", closePdf);
+    return () => {
+      modalRoot.removeEventListener("click", closePdf);
+    };
+  }, [open, modalRoot]);
 
   return (
     <StyledResume>
@@ -29,7 +47,7 @@ export default function Resume() {
       {open
         ? reactDom.createPortal(
             <StyledModal>
-              <Document file={pdf}>
+              <Document file={pdf} onLoadError={console.error} ref={pdfRef}>
                 <Page pageNumber={1} />
               </Document>
             </StyledModal>,
@@ -84,4 +102,8 @@ const StyledModal = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.25s ease-in;
+  canvas {
+    height: 60vmax !important;
+    width: auto !important;
+  }
 `;
