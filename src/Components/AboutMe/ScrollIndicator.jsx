@@ -38,7 +38,7 @@ export default function ScrollIndicator() {
 const StyledIndicator = styled.div`
   position: absolute;
   right: -10px;
-  bottom: 0;
+  top: calc(62.5% - 60px);
   width: 20px;
   display: flex;
   flex-direction: column;

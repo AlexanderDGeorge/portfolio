@@ -39,14 +39,17 @@ export default function About() {
 }
 
 const StyledAbout = styled.div`
-  position: relative;
-  height: 100%;
-  margin-top: 100%;
+  position: absolute;
+  bottom: 20%;
+  right: 0;
+  width: 100%;
   padding: 5%;
   background: #333;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and (max-width: 500px) {
+  }
   h1 {
     color: white;
     font-size: 4em;

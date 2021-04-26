@@ -2,9 +2,9 @@ import { animated } from "react-spring";
 import { useRef } from "react";
 import styled from "styled-components";
 import { FaLink, FaGithub } from "react-icons/fa";
-import Slideshow from "./Slideshow";
-import { projectDescription, projectSection } from "../util/commonStyles";
-import useProjectAnimation from "../util/useProjectAnimation";
+import Slideshow from "../Slideshow";
+import { projectDescription, projectSection } from "../../util/commonStyles";
+import useProjectAnimation from "../../util/useProjectAnimation";
 
 export default function Pairboard() {
   const ref = useRef();

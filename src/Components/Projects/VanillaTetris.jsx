@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { FaGithub, FaLink } from "react-icons/fa";
 import { animated } from "react-spring";
 import styled from "styled-components";
-import { projectDescription, projectSection } from "../util/commonStyles";
-import useProjectAnimation from "../util/useProjectAnimation";
-import Slideshow from "./Slideshow";
+import { projectDescription, projectSection } from "../../util/commonStyles";
+import useProjectAnimation from "../../util/useProjectAnimation";
+import Slideshow from "../Slideshow";
 
 export default function VanillaTetris() {
   const ref = useRef();

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
-import percentageInView from "../util/percentageInView";
+import percentageInView from "../../util/percentageInView";
 
 export default function SkillsHeader() {
   const ref = useRef();

@@ -31,16 +31,25 @@ export default function SlidingDiv() {
   }, [setSpring]);
 
   return (
-    <StyledSlide style={spring}>
-      <About />
-      <ScrollIndicator />
-      <animated.h1>
-        HEL
-        <br /> LO!
-      </animated.h1>
-    </StyledSlide>
+    <Container>
+      <StyledSlide style={spring} id="slide">
+        <About />
+        <ScrollIndicator />
+        <h1>
+          HEL
+          <br /> LO!
+        </h1>
+      </StyledSlide>
+      <StyledImage />
+    </Container>
   );
 }
+
+const Container = styled.div`
+  position: relative;
+  height: 160%;
+  width: 100%;
+`;
 
 const StyledSlide = styled(animated.div)`
   position: absolute;
@@ -54,7 +63,7 @@ const StyledSlide = styled(animated.div)`
     z-index: 1;
     top: 0;
     right: -100px;
-    height: 100%;
+    height: 62.5%;
     width: 200px;
     font-size: 8em;
     font-weight: 500;
@@ -66,4 +75,16 @@ const StyledSlide = styled(animated.div)`
     align-items: center;
     justify-content: center;
   }
+`;
+
+const StyledImage = styled.div`
+  position: sticky;
+  height: 62.5%;
+  width: 50%;
+  top: 0;
+  margin-left: 50%;
+  background-image: url(/images/waterfall.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;

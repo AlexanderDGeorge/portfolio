@@ -70,7 +70,9 @@ export default function Skills() {
 }
 
 const StyledSkills = styled.div`
-  background: transparent;
+  position: absolute;
+  z-index: 1;
+  background: white;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
