@@ -4,8 +4,6 @@ import { ScrollContext } from "../App";
 import percentageInView from "./percentageInView";
 
 export default function useProjectAnimation(element) {
-  const { scrollHeight } = useContext(ScrollContext);
-
   const [spring, setSpring] = useSpring(() => ({
     opacity: 0,
     x: 100,
@@ -19,7 +17,7 @@ export default function useProjectAnimation(element) {
     } else {
       setSpring({ opacity: 0, x: 100 });
     }
-  }, [scrollHeight, element, setSpring]);
+  }, [element, setSpring]);
 
   return { spring };
 }

@@ -1,20 +1,14 @@
 import { useContext, useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
-import { ScrollContext } from "../App";
 import percentageInView from "../util/percentageInView";
 
 export default function SkillsHeader() {
-  const { scrollHeight } = useContext(ScrollContext);
   const ref = useRef();
   const [spring, setSpring] = useSpring(() => ({
     scroll: 0,
     config: config.stiff,
   }));
-
-  useEffect(() => {
-    setSpring({ scroll: percentageInView(ref.current) });
-  }, [scrollHeight, setSpring]);
 
   const width = window.innerWidth;
   const height = window.innerHeight;

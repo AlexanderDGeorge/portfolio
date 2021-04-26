@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
-import { useContext, useEffect, useRef } from "react";
-import { ScrollContext } from "../App";
+import { useEffect, useRef } from "react";
 import Pairboard from "./Pairboard";
 import Petsagram from "./Petsagram";
 import VanillaTetris from "./VanillaTetris";
 import percentageInView from "../util/percentageInView";
 
 export default function Projects() {
-  const { scrollHeight } = useContext(ScrollContext);
   const ref = useRef();
   const [spring, setSpring] = useSpring(() => ({
     opacity: 0,
@@ -16,7 +14,7 @@ export default function Projects() {
 
   useEffect(() => {
     setSpring({ opacity: percentageInView(ref.current) / 25 });
-  }, [scrollHeight, setSpring]);
+  }, [setSpring]);
 
   return (
     <StyledProjects ref={ref}>

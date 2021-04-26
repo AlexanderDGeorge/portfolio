@@ -1,67 +1,24 @@
-import { createContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import Intro from "./Components/Intro";
-import SkillsHeader from "./Components/SkillsHeader";
-import Skills from "./Components/Skills";
-import { useSpring, animated, config } from "react-spring";
-import Projects from "./Components/Projects";
-import Resume from "./Components/Resume";
-
-export const ScrollContext = createContext({
-  scrollHeight: 0,
-  elementRef: undefined,
-  setElementRef: undefined,
-});
+import SlidingDiv from "./Components/AboutMe/SlidingDiv";
+// import SkillsHeader from "./Components/SkillsHeader";
+// import Skills from "./Components/Skills";
+// import Projects from "./Components/Projects";
+// import Resume from "./Components/Resume";
 
 export default function App() {
-  const [scrollHeight, setScrollHeight] = useState(0);
-  const [spring, setSpring] = useSpring(() => ({
-    scroll: 0,
-    config: config.stiff,
-  }));
-
-  useEffect(() => {
-    const app = document.getElementById("app");
-    function handleScroll() {
-      const posY = app.getBoundingClientRect().top;
-      const offset = window.pageYOffset - posY;
-      setScrollHeight(offset);
-    }
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (scrollHeight > 1400) {
-      setSpring({ scroll: (scrollHeight - 1400) / 50 });
-    } else {
-      setSpring({ scroll: 0 });
-    }
-  }, [scrollHeight, setSpring]);
-
   return (
     <StyledApp id="app">
-      <ScrollContext.Provider value={{ scrollHeight }}>
-        <Frame>
-          <div>
-            <Intro />
-            <ScrollContainer
-              style={{
-                transform: spring.scroll.interpolate(
-                  (scroll) => `translateY(-${Math.min(100, scroll)}%)`
-                ),
-              }}
-            >
-              <SkillsHeader />
-              <Skills />
-              <Projects />
-              <Resume />
-            </ScrollContainer>
-          </div>
-        </Frame>
-      </ScrollContext.Provider>
+      <Frame>
+        <div id="scroll">
+          <SlidingDiv />
+          <StyledImage />
+
+          {/* <SkillsHeader />
+          <Skills />
+          <Projects />
+          <Resume /> */}
+        </div>
+      </Frame>
     </StyledApp>
   );
 }
@@ -69,12 +26,24 @@ export default function App() {
 const StyledApp = styled.div`
   z-index: 1;
   position: relative;
-  height: 550%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   transition: all 0.25s ease-in-out;
   overflow: hidden;
+`;
+
+const StyledImage = styled.div`
+  position: sticky;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  margin-left: 50%;
+  background-image: url(/images/waterfall.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const Frame = styled.div`
@@ -92,15 +61,8 @@ const Frame = styled.div`
     position: relative;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    background: #333;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
-`;
-
-const ScrollContainer = styled(animated.div)`
-  position: absolute;
-  z-index: 1;
-  /* height: 500%; */
-  width: 100%;
-  background: #eee;
-  box-shadow: 0 0 20px -4px rgba(0, 0, 0, 0.5);
 `;
