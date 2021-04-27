@@ -1,15 +1,15 @@
 import { useRef } from "react";
 import { animated } from "react-spring";
 import styled from "styled-components";
-import Slideshow from "./Slideshow";
+import Slideshow from "../Slideshow";
 import { FaLink, FaGithub } from "react-icons/fa";
-import { projectDescription, projectSection } from "../util/commonStyles";
-import useProjectAnimation from "../util/useProjectAnimation";
+import { projectDescription, projectSection } from "../../util/commonStyles";
+import useProjectAnimation from "../../util/useProjectAnimation";
 
 export default function Petsagram() {
   const ref = useRef();
 
-  const { spring } = useProjectAnimation(ref.current);
+  const { spring } = useProjectAnimation(ref);
 
   return (
     <StyledPetsagram ref={ref}>

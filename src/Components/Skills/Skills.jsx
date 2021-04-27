@@ -70,7 +70,6 @@ export default function Skills() {
 }
 
 const StyledSkills = styled.div`
-  position: absolute;
   z-index: 1;
   background: white;
   width: 100%;

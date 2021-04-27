@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSpring, animated, config } from "react-spring";
 import styled from "styled-components";
 import percentageInView from "../../util/percentageInView";
@@ -12,6 +12,19 @@ export default function SkillsHeader() {
 
   const width = window.innerWidth;
   const height = window.innerHeight;
+
+  useEffect(() => {
+    const scrollEle = document.getElementById("scroll");
+    if (!scrollEle) return;
+    const handleScroll = (e) => {
+      setSpring({ scroll: percentageInView(ref.current) });
+    };
+
+    scrollEle.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollEle.removeEventListener("scroll", handleScroll);
+    };
+  }, [setSpring]);
 
   return (
     <StyledSkillsHeader ref={ref} style={{ height: (width * 9) / 16 - 60 }}>
@@ -41,7 +54,7 @@ export default function SkillsHeader() {
 }
 
 const StyledSkillsHeader = styled(animated.header)`
-  width: auto;
+  position: relative;
   > img {
     z-index: 1;
     height: auto;
@@ -50,26 +63,17 @@ const StyledSkillsHeader = styled(animated.header)`
   > h1 {
     position: absolute;
     z-index: 0;
-    top: 4vw;
     width: 100%;
     font-family: Mono;
     color: white;
     text-align: center;
-    @media screen and (max-width: 600px) {
-      top: 5vmax;
-    }
   }
   > h2 {
     position: absolute;
-    top: 20vw;
+    bottom: 30vh;
     width: 100%;
     font-family: Mono;
-    font-size: 3em;
     color: white;
     text-align: center;
-    @media screen and (max-width: 600px) {
-      font-size: 1em;
-      top: 12vmax;
-    }
   }
 `;

@@ -32,9 +32,15 @@ const GlobalStyle = createGlobalStyle`
     z-index: 5;
   }
   h1 {
-    font-size: 10vw;
+    font-size: clamp(8vw, 5em, 10vw);
     display: inline;
     font-family: Mono;
+  }
+  h2 {
+    font-size: clamp(6vw, 4em, 8vw);
+  }
+  h3 {
+    font-size: 4vw;
   }
 `;
 

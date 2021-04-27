@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import AboutMe from "./Components/AboutMe";
 import Skills from "./Components/Skills/Skills";
+import SkillsHeader from "./Components/Skills/SkillsHeader";
+import Projects from "./Components/Projects";
 
 export default function App() {
   return (
@@ -8,7 +10,9 @@ export default function App() {
       <Frame>
         <div id="scroll">
           <AboutMe />
-          <Skills />
+          <SkillsHeader />
+          {/* <Skills /> */}
+          <Projects />
         </div>
       </Frame>
     </StyledApp>

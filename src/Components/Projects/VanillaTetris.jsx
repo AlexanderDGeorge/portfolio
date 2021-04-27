@@ -9,7 +9,7 @@ import Slideshow from "../Slideshow";
 export default function VanillaTetris() {
   const ref = useRef();
 
-  const { spring } = useProjectAnimation(ref.current);
+  const { spring } = useProjectAnimation(ref);
 
   return (
     <StyledVanillaTetris ref={ref}>

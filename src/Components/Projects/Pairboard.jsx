@@ -9,7 +9,9 @@ import useProjectAnimation from "../../util/useProjectAnimation";
 export default function Pairboard() {
   const ref = useRef();
 
-  const { spring } = useProjectAnimation(ref.current);
+  const { spring } = useProjectAnimation(ref);
+
+  console.log(spring);
 
   return (
     <StyledPairboard ref={ref}>

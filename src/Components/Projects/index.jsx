@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Pairboard from "./Pairboard";
 import Petsagram from "./Petsagram";
 import VanillaTetris from "./VanillaTetris";
-import percentageInView from "../util/percentageInView";
+import percentageInView from "../../util/percentageInView";
 
 export default function Projects() {
   const ref = useRef();
@@ -12,8 +12,21 @@ export default function Projects() {
     opacity: 0,
   }));
 
+  // useEffect(() => {
+  //   setSpring({ opacity: percentageInView(ref.current) / 25 });
+  // }, [setSpring]);
+
   useEffect(() => {
-    setSpring({ opacity: percentageInView(ref.current) / 25 });
+    const scrollEle = document.getElementById("scroll");
+    if (!scrollEle) return;
+    const handleScroll = (e) => {
+      setSpring({ opacity: percentageInView(ref.current) / 25 });
+    };
+
+    scrollEle.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollEle.removeEventListener("scroll", handleScroll);
+    };
   }, [setSpring]);
 
   return (
@@ -30,6 +43,7 @@ export default function Projects() {
 const StyledProjects = styled.div`
   width: 100%;
   margin-top: 10%;
+  background: #51a9db;
   > h1 {
     width: 100%;
     font-family: Mono;
