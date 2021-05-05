@@ -92,4 +92,7 @@ const StyledSkill = styled.div`
     height: 40px;
     width: auto;
   }
+  > h2 {
+    font-size: revert;
+  }
 `;

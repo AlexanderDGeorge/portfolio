@@ -6,7 +6,7 @@ import pdf from "./resume.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function Resume() {
+export default function Contact() {
   const modalRoot = document.getElementById("modal-root");
   const [open, setOpen] = useState(false);
   const pdfRef = useRef(null);
@@ -28,10 +28,8 @@ export default function Resume() {
   }, [open, modalRoot]);
 
   return (
-    <StyledResume>
-      <h1>Impressed?</h1>
-      <h2>Let's Talk</h2>
-
+    <StyledContact>
+      <h1>Let's Talk</h1>
       <a href="https://www.linkedin.com/in/AlexanderDGeorge/">
         <FaLinkedin style={{ fill: "#0072b1", background: "white" }} />
       </a>
@@ -54,11 +52,11 @@ export default function Resume() {
             modalRoot
           )
         : null}
-    </StyledResume>
+    </StyledContact>
   );
 }
 
-const StyledResume = styled.div`
+const StyledContact = styled.div`
   width: 100%;
   padding: 10%;
   background: #333;
@@ -86,9 +84,9 @@ const StyledResume = styled.div`
   }
   > a,
   button {
-    box-shadow: 0 0 20px -14px;
+    box-shadow: 0 0 20px -4px rgba(0, 0, 0, 0.4);
     &:hover {
-      box-shadow: 0 0 20px -10px;
+      box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.4);
     }
   }
 `;

@@ -3,6 +3,7 @@ import AboutMe from "./Components/AboutMe";
 import Skills from "./Components/Skills/Skills";
 import SkillsHeader from "./Components/Skills/SkillsHeader";
 import Projects from "./Components/Projects";
+import Contact from "./Components/Contact";
 
 export default function App() {
   return (
@@ -11,8 +12,9 @@ export default function App() {
         <div id="scroll">
           <AboutMe />
           <SkillsHeader />
-          {/* <Skills /> */}
+          <Skills />
           <Projects />
+          <Contact />
         </div>
       </Frame>
     </StyledApp>

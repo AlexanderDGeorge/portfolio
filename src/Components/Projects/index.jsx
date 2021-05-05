@@ -42,8 +42,8 @@ export default function Projects() {
 
 const StyledProjects = styled.div`
   width: 100%;
-  margin-top: 10%;
-  background: #51a9db;
+  padding: 10% 0;
+  background: #eee;
   > h1 {
     width: 100%;
     font-family: Mono;

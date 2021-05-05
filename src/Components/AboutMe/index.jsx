@@ -58,6 +58,7 @@ const StyledSlide = styled(animated.div)`
   width: 100%;
   height: 100%;
   background: #333;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
   > h1 {
     position: absolute;
     z-index: 1;

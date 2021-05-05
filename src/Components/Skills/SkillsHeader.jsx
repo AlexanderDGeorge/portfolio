@@ -55,6 +55,7 @@ export default function SkillsHeader() {
 
 const StyledSkillsHeader = styled(animated.header)`
   position: relative;
+  background: white;
   > img {
     z-index: 1;
     height: auto;
