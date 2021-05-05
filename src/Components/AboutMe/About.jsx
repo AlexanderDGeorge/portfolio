@@ -29,9 +29,11 @@ export default function About() {
         <h1>Alexander George</h1>
         <h4>ADVENTURER x CREATIVE x DEVELOPER</h4>
         <p>
-          I'm a <strong>Software Engineer</strong> experienced with crafting
-          Full Stack Web Applications. I have been learning about and working
-          with code for over five years.
+          I'm a <strong>Software Engineer</strong> experienced with constructing
+          Full Stack Web Applications. I enjoy crafting simple, intuitive, yet
+          immersive frontend experiences! I'm currently working towards
+          expanding my knowledge and proficiency in the field of UX Design.
+          Continue below to learn more about me.
         </p>
       </TextTrail>
     </StyledAbout>

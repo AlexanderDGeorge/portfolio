@@ -29,7 +29,7 @@ export default function Contact() {
 
   return (
     <StyledContact>
-      <h1>Let's Talk</h1>
+      <h1>Contact</h1>
       <a href="https://www.linkedin.com/in/AlexanderDGeorge/">
         <FaLinkedin style={{ fill: "#0072b1", background: "white" }} />
       </a>

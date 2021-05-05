@@ -4,19 +4,23 @@ import Skills from "./Components/Skills/Skills";
 import SkillsHeader from "./Components/Skills/SkillsHeader";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
+import { Suspense } from "react";
+import Loading from "./Components/Loading";
 
 export default function App() {
   return (
     <StyledApp id="app">
-      <Frame>
-        <div id="scroll">
-          <AboutMe />
-          <SkillsHeader />
-          <Skills />
-          <Projects />
-          <Contact />
-        </div>
-      </Frame>
+      <Suspense fallback={Loading}>
+        <Frame>
+          <div id="scroll">
+            <AboutMe />
+            <SkillsHeader />
+            <Skills />
+            <Projects />
+            <Contact />
+          </div>
+        </Frame>
+      </Suspense>
     </StyledApp>
   );
 }
