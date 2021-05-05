@@ -58,8 +58,9 @@ export default function Contact() {
 
 const StyledContact = styled.div`
   width: 100%;
-  padding: 10%;
-  background: #333;
+  min-height: 100%;
+  padding: 2% 10%;
+  background: #48b18c;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,8 +75,8 @@ const StyledContact = styled.div`
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 200;
     margin: 10px;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 16px;
+    border-radius: 16px;
     color: white;
     text-decoration: none;
     background: transparent;

@@ -76,6 +76,13 @@ const StyledSlide = styled(animated.div)`
     align-items: center;
     justify-content: center;
   }
+  > svg {
+    position: absolute;
+    z-index: 1;
+    top: 2%;
+    right: -100px;
+    width: 200px;
+  }
 `;
 
 const StyledImage = styled.div`

@@ -5,13 +5,14 @@ import SkillsHeader from "./Components/Skills/SkillsHeader";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
 import { Suspense } from "react";
-import Loading from "./Components/Loading";
+import Loading, { Logo } from "./Components/Loading";
 
 export default function App() {
   return (
     <StyledApp id="app">
       <Suspense fallback={Loading}>
         <Frame>
+          <Logo color="#48B18C" />
           <div id="scroll">
             <AboutMe />
             <SkillsHeader />
@@ -54,5 +55,13 @@ const Frame = styled.div`
     background: #333;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+  > svg {
+    position: absolute;
+    z-index: 5;
+    top: 2px;
+    left: 2px;
+    height: 40px;
+    width: 40px;
   }
 `;
