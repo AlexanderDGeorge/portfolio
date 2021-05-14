@@ -39,7 +39,7 @@ export default function SkillsHeader() {
           ),
         }}
       />
-      <h2>and TECHNOLOGIES</h2>
+      {/* <h2>and TECHNOLOGIES</h2> */}
       <animated.img
         src={"/images/Foreground.png"}
         alt=""
@@ -63,6 +63,7 @@ const StyledSkillsHeader = styled(animated.header)`
   }
   > h1 {
     position: absolute;
+    top: 25%;
     z-index: 0;
     width: 100%;
     font-family: Mono;
@@ -71,7 +72,7 @@ const StyledSkillsHeader = styled(animated.header)`
   }
   > h2 {
     position: absolute;
-    bottom: 30vh;
+    bottom: 10vh;
     width: 100%;
     font-family: Mono;
     color: white;

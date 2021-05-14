@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import AboutMe from "./Components/AboutMe";
-import Skills from "./Components/Skills/Skills";
-import SkillsHeader from "./Components/Skills/SkillsHeader";
-import Projects from "./Components/Projects";
-import Contact from "./Components/Contact";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import Loading, { Logo } from "./Components/Loading";
+
+const AboutMe = lazy(() => import("./Components/AboutMe"));
+const Skills = lazy(() => import("./Components/Skills/Skills"));
+const SkillsHeader = lazy(() => import("./Components/Skills/SkillsHeader"));
+const Projects = lazy(() => import("./Components/Projects"));
+const Contact = lazy(() => import("./Components/Contact"));
 
 export default function App() {
   return (

@@ -5,6 +5,7 @@ import Pairboard from "./Pairboard";
 import Petsagram from "./Petsagram";
 import VanillaTetris from "./VanillaTetris";
 import percentageInView from "../../util/percentageInView";
+import MadCuts from "./MadCuts";
 
 export default function Projects() {
   const ref = useRef();
@@ -33,6 +34,7 @@ export default function Projects() {
     <StyledProjects ref={ref}>
       <animated.h1 style={spring}>PROJECTS</animated.h1>
       <animated.p style={spring}>Click the images to cycle through</animated.p>
+      <MadCuts />
       <Pairboard />
       <Petsagram />
       <VanillaTetris />
